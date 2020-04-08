@@ -16,7 +16,6 @@ class AddInvestor extends Component {
         console.log(event.target.name);
         const property = event.target.name;
         if (property === 'file') {
-            // console.log(event.target.files[0]);
             const files = event.target.files;
             this.setState({files: files})
         }
@@ -26,26 +25,16 @@ class AddInvestor extends Component {
 
       addInvestor (event) { 
         event.preventDefault();
-        // const { first, last, dob, street, city, state, zipcode, file } = {...this.state};
-        // const investor = { first, last, dob, street, city, state, zipcode };
         const investor = {...this.state };
         investor.files = [];
         let data = new FormData();
-        // investor.forEach((property) => data.append([property], property));
-        // data.append('file', this.state.file);
         if (this.state.files)
         for (let i = 0; i < this.state.files.length; i++) {
             data.append('file', this.state.files[i]); 
         }
-        // for (const property in investor) {
-        //     console.log(property);
-        //     console.log(this.state[property]);
-        //     data.append([property], this.state[property]);
-        // }
         investorService.addDocuments(data)
         .then((result) => {
             console.log('files uploaded');
-            // investorService.addInvestor(JSON.stringify(investor));
             investorService.addInvestor(investor)
             .then((res) => (console.log('done', res)));
        

@@ -1,0 +1,26 @@
+version: 0.2
+
+env: 
+  variables:
+    S3_BUCKET: "pm-f" 
+    APP_NAME: "pm-f" 
+    BUILD_ENV : "prod"
+    phases: 
+      install:
+        runtime-versions: 
+          nodejs: 10
+        commands:
+          - yarn install
+          - npm install
+      build: 
+        commands:
+          - echo Build started on `date` 
+          - npm run-script build
+      post_build: 
+        commands:
+          - aws s3 rm s3://${S3_BUCKET} --recursive
+          - echo S3 bucket is cleared.
+          - cd dist
+          - aws s3 cp * s3://${S3_BUCKET} --recursive - echo Build completed on `date`
+  artifacts: files:
+    - build/**/*
