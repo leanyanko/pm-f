@@ -1,0 +1,38 @@
+version: 0.2
+
+env:
+  variables:
+    S3_BUCKET: "vee-24"
+    APP_NAME: "vee"
+    BUILD_ENV : "prod"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      # Install node dependancies. #
+      - yarn global add @angular/cli
+      - yarn install
+      - yarn add @angular-devkit/build-angular --dev
+  build:
+    commands:
+      # Builds Angular application
+      - echo Build started on `date`
+      - ng build
+      #      - ng build --${BUILD_ENV}
+  post_build:
+    commands:
+      # Clear S3 bucket.
+      - aws s3 rm s3://${S3_BUCKET} --recursive
+      - echo S3 bucket is cleared.
+     # Copy from dist folder to S3 bucket
+      - cd dist
+      - aws s3 cp * s3://${S3_BUCKET} --recursive
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - dist/**/*
+  secondary-artifacts:
+    vee:
+      files:
+        - dist/**/*

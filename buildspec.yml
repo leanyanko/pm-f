@@ -22,5 +22,6 @@ phases:
       - echo S3 bucket is cleared.
       - cd dist
       - aws s3 cp * s3://${S3_BUCKET} --recursive - echo Build completed on `date`
-artifacts: files:
-  - build/**/*
+artifacts: 
+  files:
+    - build/**/*
