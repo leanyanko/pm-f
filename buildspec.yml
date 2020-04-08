@@ -28,4 +28,4 @@ artifacts:
   secondary-artifacts:
     pmf:
       files:
-        - dist/**/*
+        - build/**/*
