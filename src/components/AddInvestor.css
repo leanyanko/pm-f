@@ -1,0 +1,28 @@
+input {
+    height: 30px;
+    border-radius: 10px;
+    width: 20%;
+    margin: 10px;
+    border: 1px solid gray;
+    font-size: 1.3em;
+    padding-left: 7px;;
+}
+
+.base {
+    display: flex;
+    flex-direction: column;
+}
+
+div {
+    margin: 20px;
+}
+
+.street {
+    width: 60%;
+}
+
+.upload {
+    border: none;
+    width: 50%;
+    font-size: 1em;
+}
