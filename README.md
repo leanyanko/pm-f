@@ -4,7 +4,9 @@
 
 ## Installation:
 `git clone https://github.com/meinou/pm-f.git`
+
 `npm install`
+
 `npm start`
 
 
