@@ -3,8 +3,7 @@ version: 0.2
 env: 
   variables:
     S3_BUCKET: "pm-f" 
-    APP_NAME: "pm-f" 
-    BUILD_ENV : "prod"
+    APP_NAME: "pm-f"
 phases: 
   install:
     runtime-versions: 
@@ -21,7 +20,8 @@ phases:
       - aws s3 rm s3://${S3_BUCKET} --recursive
       - echo S3 bucket is cleared.
       - cd build
-      - aws s3 cp * s3://${S3_BUCKET} --recursive - echo Build completed on `date`
+      - aws s3 cp * s3://${S3_BUCKET} --recursive 
+      - echo Build completed on `date`
 artifacts: 
   files:
     - build/**/*
