@@ -25,3 +25,7 @@ phases:
 artifacts: 
   files:
     - build/**/*
+  secondary-artifacts:
+    pm-f:
+      files:
+        - dist/**/*
