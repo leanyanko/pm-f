@@ -26,6 +26,6 @@ artifacts:
   files:
     - build/**/*
   secondary-artifacts:
-    pm-f:
+    pmf:
       files:
         - dist/**/*
