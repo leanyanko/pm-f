@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const localUrl = 'http://localhost:3030/investors';
-const baseUrl = localUrl;
+const remoteUrl = 'https://parallelm.herokuapp.com/investors';
+const baseUrl = remoteUrl;
 
 const investorService = {};
 
