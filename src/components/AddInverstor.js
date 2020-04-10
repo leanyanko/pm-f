@@ -28,20 +28,21 @@ class AddInvestor extends Component {
         const investor = {...this.state };
         investor.files = [];
         let data = new FormData();
-        if (this.state.files)
-        for (let i = 0; i < this.state.files.length; i++) {
-            data.append('file', this.state.files[i]); 
-        }
-        investorService.addDocuments(data)
-        .then((result) => {
-            console.log('files uploaded');
-            investorService.addInvestor(investor)
-            .then((res) => (console.log('done', res)));
-       
-        })
-        console.log(JSON.stringify(investor));
-        
 
+
+        investorService.addInvestor(investor)
+            .then((res) => {
+              console.log('done', res);
+              if (this.state.files)
+                      for (let i = 0; i < this.state.files.length; i++) {
+                          data.append('file', this.state.files[i], res.data + '-' + this.state.files[i].name); 
+                      }
+
+              investorService.addDocuments(data)
+                      .then((result) => {
+                          console.log('files uploaded');      
+                      })
+        });
       }
 
       render() {
